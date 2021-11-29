@@ -5,5 +5,5 @@ const siteTripMainElement = document.querySelector('.trip-main__trip-controls');
 const siteTripControlsNavigation = siteTripMainElement.querySelector(
   '.trip-controls__navigation'
 );
-console.log(createSiteMenuTemplate());
+
 renderTemplate(siteTripControlsNavigation, createSiteMenuTemplate(), RenderPosition.BEFOREEND);
