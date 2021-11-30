@@ -26,6 +26,10 @@ renderTemplate(siteTripEventsElement, createFormOfCreation(), RenderPosition.BEF
 
 const siteTripEventsList = document.querySelector('.trip-events__list');
 
-renderTemplate(siteTripEventsList, createEditForm(), RenderPosition.BEFOREEND);
+renderTemplate(siteTripEventsList, createEditForm(), RenderPosition.AFTERBEGIN);
 
-renderTemplate(siteTripEventsList, createTripPoint(), RenderPosition.BEFOREEND);
+const COUNT = 3;
+
+for (let i = 0; i < COUNT; i ++) {
+  renderTemplate(siteTripEventsList, createTripPoint(), RenderPosition.BEFOREEND);
+}
