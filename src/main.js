@@ -5,7 +5,22 @@ import { createSortingTemplate } from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
 import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
-import './mock/point';
+import { generatePoint } from './mock/point.js';
+
+const getDifferenceTime = (point) => {
+  const differenceMin = (point.dateTo.getTime() - point.dateFrom.getTime()) / 60000;
+  let minutes = differenceMin;
+  if (differenceMin / 60 > 1) {
+    const hours = Math.trunc(differenceMin / 60);
+    minutes = differenceMin % 60;
+    return {hours, minutes};
+  }
+  return minutes;
+};
+
+const POINT_COUNT = 3;
+
+const points = Array.from({length: POINT_COUNT}, generatePoint);
 
 const siteTripMainElement = document.querySelector('.trip-main__trip-controls');
 const siteTripControlsNavigation = siteTripMainElement.querySelector(
@@ -32,5 +47,9 @@ renderTemplate(siteTripEventsList, createEditForm(), RenderPosition.AFTERBEGIN);
 const COUNT = 3;
 
 for (let i = 0; i < COUNT; i ++) {
-  renderTemplate(siteTripEventsList, createTripPoint(), RenderPosition.BEFOREEND);
+  renderTemplate(siteTripEventsList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
+  console.log(points[i]);
 }
+
+
+export { getDifferenceTime };
