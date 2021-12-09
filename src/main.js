@@ -48,7 +48,7 @@ const COUNT = 3;
 
 for (let i = 0; i < COUNT; i ++) {
   renderTemplate(siteTripEventsList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
-  console.log(points[i]);
+  //console.log(points[i]);
 }
 
 
