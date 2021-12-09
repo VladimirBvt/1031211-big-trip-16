@@ -7,7 +7,7 @@ import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 
-const POINT_COUNT = 3;
+const POINT_COUNT = 15;
 
 const points = Array.from({length: POINT_COUNT}, generatePoint);
 
@@ -33,9 +33,6 @@ const siteTripEventsList = document.querySelector('.trip-events__list');
 
 renderTemplate(siteTripEventsList, createEditForm(), RenderPosition.AFTERBEGIN);
 
-const COUNT = 3;
-
-for (let i = 0; i < COUNT; i ++) {
+for (let i = 0; i < points.length; i ++) {
   renderTemplate(siteTripEventsList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
-  //console.log(points[i]);
 }
