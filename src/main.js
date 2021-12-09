@@ -5,6 +5,7 @@ import { createSortingTemplate } from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
 import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
+import './mock/point';
 
 const siteTripMainElement = document.querySelector('.trip-main__trip-controls');
 const siteTripControlsNavigation = siteTripMainElement.querySelector(
