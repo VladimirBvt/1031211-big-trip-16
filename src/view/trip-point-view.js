@@ -1,20 +1,17 @@
-import { getDifferenceTime } from '../main.js';
-//import dayjs from 'dayjs';
-
 export const createTripPoint = (point) => `<li class="trip-events__item">
               <div class="event">
-                <time class="event__date" datetime="2019-03-18">${point.dateTo} ${point.dateFrom.getDay()}</time>
+                <time class="event__date" datetime="2019-03-18">${point.dateTo} ${point.dateFrom.format('DD')}</time>
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/${point.type}.png" alt="Event type icon">
                 </div>
                 <h3 class="event__title">${point.type} ${point.destination.name}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
-                    <time class="event__start-time" datetime="2019-03-18T10:30">${point.dateFrom.getHours()}:${point.dateFrom.getMinutes().toString().length === 1 ? 0 + point.dateFrom.getMinutes().toString() : point.dateFrom.getMinutes()}</time>
+                    <time class="event__start-time" datetime="2019-03-18T10:30">${point.dateFrom.format('HH-mm')}</time>
                     &mdash;
-                    <time class="event__end-time" datetime="2019-03-18T11:00">${point.dateTo.getHours()}:${point.dateTo.getMinutes().toString().length === 1 ? 0 + point.dateTo.getMinutes().toString() : point.dateTo.getMinutes()}</time>
+                    <time class="event__end-time" datetime="2019-03-18T11:00">${point.dateTo.format('HH-mm')}</time>
                   </p>
-                  <p class="event__duration">${getDifferenceTime(point).hours ? getDifferenceTime(point).hours : ''}${getDifferenceTime(point).hours ? 'H' : ''} ${getDifferenceTime(point).hours ? getDifferenceTime(point).minutes : getDifferenceTime(point)}M</p>
+                  <p class="event__duration">${point.dateTo.diff(point.dateFrom) / 60000}M</p>
                 </div>
                 <p class="event__price">
                   &euro;&nbsp;<span class="event__price-value">${point.basePrice}</span>

@@ -111,8 +111,8 @@ const getIdentification = () => {
 
 export const generatePoint = () => ({
   basePrice: getRandomInteger(10, 500),
-  dateFrom: dayjs().toDate(),
-  dateTo: dayjs().add(getRandomInteger(10, 150), 'minute').toDate(),
+  dateFrom: dayjs(),
+  dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
   destination: getDestination(),
   id: getIdentification(),
   isFavorite: Boolean(getRandomInteger(0, 1)),
