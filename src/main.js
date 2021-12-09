@@ -7,17 +7,6 @@ import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 
-const getDifferenceTime = (point) => {
-  const differenceMin = (point.dateTo.getTime() - point.dateFrom.getTime()) / 60000;
-  let minutes = differenceMin;
-  if (differenceMin / 60 > 1) {
-    const hours = Math.trunc(differenceMin / 60);
-    minutes = differenceMin % 60;
-    return {hours, minutes};
-  }
-  return minutes;
-};
-
 const POINT_COUNT = 3;
 
 const points = Array.from({length: POINT_COUNT}, generatePoint);
@@ -50,5 +39,3 @@ for (let i = 0; i < COUNT; i ++) {
   renderTemplate(siteTripEventsList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
   //console.log(points[i]);
 }
-
-export { getDifferenceTime };
