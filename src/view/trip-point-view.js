@@ -1,8 +1,7 @@
 import { getDifferenceTime } from '../main.js';
-import dayjs from 'dayjs';
+//import dayjs from 'dayjs';
 
-export const createTripPoint = (point) => {
-  return `<li class="trip-events__item">
+export const createTripPoint = (point) => `<li class="trip-events__item">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">${point.dateTo} ${point.dateFrom.getDay()}</time>
                 <div class="event__type">
@@ -39,4 +38,3 @@ export const createTripPoint = (point) => {
                 </button>
               </div>
             </li>`;
-};
