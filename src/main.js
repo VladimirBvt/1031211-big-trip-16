@@ -51,5 +51,4 @@ for (let i = 0; i < COUNT; i ++) {
   //console.log(points[i]);
 }
 
-
 export { getDifferenceTime };
