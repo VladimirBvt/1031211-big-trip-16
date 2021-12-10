@@ -36,3 +36,29 @@ renderTemplate(siteTripEventsList, createEditForm(), RenderPosition.AFTERBEGIN);
 for (let i = 0; i < points.length; i ++) {
   renderTemplate(siteTripEventsList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
 }
+
+// кнопка открытия формы редактирования точки
+const buttonOpenEditForm = document.querySelectorAll('.event__rollup-btn');
+
+for (const button of buttonOpenEditForm) {
+  button.addEventListener('click', (evt) => {
+    const parentElement = evt.target.parentNode;
+
+    renderTemplate(parentElement, createEditForm(), RenderPosition.AFTERBEGIN);
+
+    const editForm = parentElement.querySelector('.event--edit');
+    const buttonClose = editForm.querySelector('.event__rollup-btn');
+
+    buttonClose.addEventListener('click', () => {
+      editForm.remove();
+    });
+
+    const buttonDelete = editForm.querySelector('.event__reset-btn');
+
+    buttonDelete.addEventListener('click', () => {
+      editForm.remove();
+    });
+  });
+}
+
+
