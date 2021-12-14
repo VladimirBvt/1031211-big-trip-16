@@ -13,7 +13,7 @@ const POINT_COUNT = 15;
 
 const points = Array.from({length: POINT_COUNT}, generatePoint);
 
-console.log(points);
+//console.log(points);
 
 const siteTripMainElement = document.querySelector('.trip-main__trip-controls');
 const siteTripControlsNavigation = siteTripMainElement.querySelector(
