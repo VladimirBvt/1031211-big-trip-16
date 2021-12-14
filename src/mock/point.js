@@ -97,6 +97,68 @@ const offers = [{
       price: 20,
     },
   ],
+}, {
+  type: 'ship',
+  offers: [
+    {
+      id: 1,
+      title: 'luxury cabin',
+      price: 120,
+    }, {
+      id: 2,
+      title: 'breakfast in the cabin',
+      price: 30,
+    }
+  ]
+}, {
+  type: 'sightseeing',
+  offers: [
+    {
+      id: 1,
+      title: 'guide',
+      price: 20,
+    },
+  ],
+}, {
+  type: 'drive',
+  offers: [
+    {
+      id: 1,
+      title: 'business class',
+      price: 40,
+    },
+  ],
+}, {
+  type: 'bus',
+  offers: [
+    {
+      id: 1,
+      title: 'guide',
+      price: 20,
+    },
+  ],
+}, {
+  type: 'check-in',
+  offers: [
+    {
+      id: 1,
+      title: 'big room',
+      price: 50,
+    }, {
+      id: 1,
+      title: 'breakfast',
+      price: 20,
+    }
+  ],
+}, {
+  type: 'restaurant',
+  offers: [
+    {
+      id: 1,
+      title: 'tips',
+      price: 10,
+    },
+  ],
 }];
 
 const identifications = [0];
@@ -109,13 +171,17 @@ const getIdentification = () => {
   return newId;
 };
 
-export const generatePoint = () => ({
-  basePrice: getRandomInteger(10, 500),
-  dateFrom: dayjs(),
-  dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
-  destination: getDestination(),
-  id: getIdentification(),
-  isFavorite: Boolean(getRandomInteger(0, 1)),
-  offers: generateRandomData(offers),
-  type: generateRandomData(POINT_TYPES),
-});
+export const generatePoint = () => {
+  const type = generateRandomData(POINT_TYPES);
+  const offersThisPoint = offers.find((offer) => type === offer.type);
+  return ({
+    basePrice: getRandomInteger(10, 500),
+    dateFrom: dayjs(),
+    dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
+    destination: getDestination(),
+    id: getIdentification(),
+    isFavorite: Boolean(getRandomInteger(0, 1)),
+    offers: offersThisPoint,
+    type: type,
+  });
+};
