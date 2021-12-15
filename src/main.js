@@ -13,8 +13,6 @@ const POINT_COUNT = 15;
 
 const points = Array.from({length: POINT_COUNT}, generatePoint);
 
-//console.log(points);
-
 const siteTripMainElement = document.querySelector('.trip-main__trip-controls');
 const siteTripControlsNavigation = siteTripMainElement.querySelector(
   '.trip-controls__navigation'
@@ -56,7 +54,9 @@ for (const button of buttonOpenEditForm) {
 
     const offerContainer = grandParentElement.querySelector('.event__available-offers');
 
-    renderTemplate(offerContainer, createOffer(thisPoint), RenderPosition.BEFOREEND);
+    for (const offer of thisPoint.offers.offers) {
+      renderTemplate(offerContainer, createOffer(offer), RenderPosition.BEFOREEND);
+    }
 
     const editForm = grandParentElement.querySelector('.event--edit');
     const buttonClose = editForm.querySelector('.event__rollup-btn');
