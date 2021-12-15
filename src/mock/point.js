@@ -36,18 +36,14 @@ const generateRandomData = (list) => {
   return list[randomIndex];
 };
 
-const NUMBER_ELEMENTS = 5;
-
 const getDescriptionDestination = () => {
-  const descriptions = [];
-  descriptions.push(DESCRIPTION_DESTINATION[length - 1]);
-  for (let i = 0; i < DESCRIPTION_DESTINATION.length - 1; i ++) {
-    const randomIndex = getRandomInteger(0, DESCRIPTION_DESTINATION.length - 1);
-    const randomElement = DESCRIPTION_DESTINATION[randomIndex];
-    descriptions.push(randomElement);
+  const description = [];
+  const COUNT = getRandomInteger(1, 5);
+  for (let i = 0; i < COUNT; i ++) {
+    const randomText = generateRandomData(DESCRIPTION_DESTINATION);
+    description.push(randomText);
   }
-  descriptions.splice(0, NUMBER_ELEMENTS);
-  return descriptions;
+  return description.join(' ');
 };
 
 const getDestination = () => ({
