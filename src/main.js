@@ -73,4 +73,19 @@ for (const button of buttonOpenEditForm) {
   });
 }
 
+// кнопка добавления новой точки маршрута
+/*const buttonAddEvent = document.querySelector('.trip-main__event-add-btn');
+
+buttonAddEvent.addEventListener((evt) => {
+
+});*/
+
+// кнопка Избранное
+const favoriteButtons = document.querySelectorAll('.event__favorite-btn');
+
+for (const button of favoriteButtons) {
+  button.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('event__favorite-btn--active');
+  });
+}
 

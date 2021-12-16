@@ -181,3 +181,23 @@ export const generatePoint = () => {
     type: type,
   });
 };
+
+const getNewId = () => {
+  const lastId = identifications[length - 1];
+  return +lastId + 1;
+};
+getNewId();
+//console.log(identifications.toString()); //0
+//console.log(identifications[0].toString()); //0
+//console.log(identifications[1].toString()); //Cannot read properties of undefined (reading 'toString')
+
+export const generateNewPoint = () => ({
+  basePrice: null,
+  dateFrom: '',
+  dateTo: '',
+  destination: '',
+  id: getIdentification(),
+  isFavorite: false,
+  offers: null,
+  type: null,
+});
