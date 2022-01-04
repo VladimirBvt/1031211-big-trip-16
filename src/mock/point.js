@@ -157,7 +157,7 @@ const offers = [{
   ],
 }];
 
-const identifications = [0];
+/*const identifications = [0];
 
 const getIdentification = () => {
   const indexElement = identifications.length - 1;
@@ -165,9 +165,9 @@ const getIdentification = () => {
   const newId = identification + 1;
   identifications.push(newId);
   return newId;
-};
+};*/
 
-export const generatePoint = () => {
+export const generatePoint = (item, index) => {
   const type = generateRandomData(POINT_TYPES);
   const offersThisPoint = offers.find((offer) => type === offer.type);
   return ({
@@ -175,28 +175,19 @@ export const generatePoint = () => {
     dateFrom: dayjs(),
     dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
     destination: getDestination(),
-    id: getIdentification(),
+    id: index,
     isFavorite: Boolean(getRandomInteger(0, 1)),
     offers: offersThisPoint,
     type: type,
   });
 };
 
-const getNewId = () => {
-  const lastId = identifications[length - 1];
-  return +lastId + 1;
-};
-getNewId();
-//console.log(identifications.toString()); //0
-//console.log(identifications[0].toString()); //0
-//console.log(identifications[1].toString()); //Cannot read properties of undefined (reading 'toString')
-
 export const generateNewPoint = () => ({
   basePrice: null,
   dateFrom: '',
   dateTo: '',
   destination: '',
-  id: getIdentification(),
+  id: null,
   isFavorite: false,
   offers: null,
   type: null,

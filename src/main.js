@@ -7,6 +7,7 @@ import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
 import {generatePoint} from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
+import { generateNewPoint } from './mock/point.js';
 
 
 const POINT_COUNT = 15;
@@ -74,11 +75,13 @@ for (const button of buttonOpenEditForm) {
 }
 
 // кнопка добавления новой точки маршрута
-/*const buttonAddEvent = document.querySelector('.trip-main__event-add-btn');
+const buttonAddEvent = document.querySelector('.trip-main__event-add-btn');
 
-buttonAddEvent.addEventListener((evt) => {
-
-});*/
+buttonAddEvent.addEventListener('click', () => {
+  const newPoint = generateNewPoint();
+  newPoint.id = points.length;
+  points.push(newPoint);
+});
 
 // кнопка Избранное
 const favoriteButtons = document.querySelectorAll('.event__favorite-btn');
