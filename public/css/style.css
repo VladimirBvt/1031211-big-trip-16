@@ -977,3 +977,7 @@ main {
 
 .statistics__item:not(:last-child) {
   margin-bottom: 78px; }
+
+.new_event {
+  margin-bottom: 20px;
+}

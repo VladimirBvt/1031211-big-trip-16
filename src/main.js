@@ -88,7 +88,17 @@ const favoriteButtons = document.querySelectorAll('.event__favorite-btn');
 
 for (const button of favoriteButtons) {
   button.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('event__favorite-btn--active');
+    button.classList.toggle('event__favorite-btn--active');
+    for (const point of points) {
+      const idDataElement = evt.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
+      if (button.classList.contains('event__favorite-btn--active')) {
+        if (point.id === +idDataElement) {
+          point.isFavorite = true;
+        }
+      } else if (point.id === +idDataElement) {
+        point.isFavorite = false;
+      }
+    }
   });
 }
 

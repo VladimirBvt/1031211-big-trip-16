@@ -176,7 +176,7 @@ export const generatePoint = (item, index) => {
     dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
     destination: getDestination(),
     id: index,
-    isFavorite: Boolean(getRandomInteger(0, 1)),
+    isFavorite: false,
     offers: offersThisPoint,
     type: type,
   });
