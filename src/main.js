@@ -74,14 +74,48 @@ for (const button of buttonOpenEditForm) {
   });
 }
 
-// кнопка добавления новой точки маршрута
-const buttonAddEvent = document.querySelector('.trip-main__event-add-btn');
+//скрывание формы добавления новой точки маршрута
+const newEventForm = document.querySelector('.new_event');
 
-buttonAddEvent.addEventListener('click', () => {
+newEventForm.classList.add('visually-hidden');
+
+// кнопка добавления новой точки маршрута
+const buttonNewEvent = document.querySelector('.trip-main__event-add-btn');
+
+buttonNewEvent.addEventListener('click', () => {
+  newEventForm.classList.toggle('visually-hidden');
+  buttonNewEvent.style.pointerEvents = 'none';
+
   const newPoint = generateNewPoint();
   newPoint.id = points.length;
   points.push(newPoint);
+  //console.log(points);
 });
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    if (!newEventForm.classList.contains('visually-hidden')) {
+      newEventForm.reset();
+      newEventForm.classList.add('visually-hidden');
+      buttonNewEvent.style.pointerEvents = 'auto';
+    }
+  }
+});
+
+// кнопка сброса формы новой точки и её закрытия
+const buttonCancelNewEventForm = newEventForm.querySelector('.event__reset-btn');
+
+buttonCancelNewEventForm.addEventListener('click', () => {
+  newEventForm.classList.add('visually-hidden');
+  buttonNewEvent.style.pointerEvents = 'auto';
+});
+
+// кнопка Save формы создания новой точки маршрута
+/*const buttonSaveNewEventForm = newEventForm.querySelector('.event__save-btn');
+
+buttonSaveNewEventForm.addEventListener('click', () => {
+
+});*/
 
 // кнопка Избранное
 const favoriteButtons = document.querySelectorAll('.event__favorite-btn');
