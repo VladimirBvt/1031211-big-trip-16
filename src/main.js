@@ -8,6 +8,8 @@ import { createTripPoint } from './view/trip-point-view.js';
 import {generatePoint} from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
+import { pointsToFilter } from './filter.js';
+//import dayjs from 'dayjs';
 
 
 const POINT_COUNT = 15;
@@ -136,3 +138,23 @@ for (const button of favoriteButtons) {
   });
 }
 
+// фильтрация точек по кнопке FUTURE
+const buttonFuturePoints = document.querySelector('#filter-future'); // input
+
+buttonFuturePoints.addEventListener('click',() => {
+  pointsToFilter.future();
+});
+
+// фильтрация точек по кнопке PAST
+const buttonPastPoints = document.querySelector('#filter-past'); // input
+
+buttonPastPoints.addEventListener('click',() => {
+  pointsToFilter.past();
+});
+
+// фильтрация точек по кнопке everything
+const buttonEverythingPoints = document.querySelector('#filter-everything'); // input
+
+buttonEverythingPoints.addEventListener('click',() => points);
+
+export { points };

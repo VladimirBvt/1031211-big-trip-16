@@ -157,16 +157,6 @@ const offers = [{
   ],
 }];
 
-/*const identifications = [0];
-
-const getIdentification = () => {
-  const indexElement = identifications.length - 1;
-  const identification = identifications[indexElement];
-  const newId = identification + 1;
-  identifications.push(newId);
-  return newId;
-};*/
-
 export const generatePoint = (item, index) => {
   const type = generateRandomData(POINT_TYPES);
   const offersThisPoint = offers.find((offer) => type === offer.type);
