@@ -1,15 +1,15 @@
-import { createSiteMenuTemplate } from './view/site-menu-view.js';
-import { renderTemplate, RenderPosition } from './render.js';
+//import { createSiteMenuTemplate } from './view/site-menu-view.js';
+import SiteMenuView from './view/site-menu-view.js';
+import { renderTemplate, RenderPosition, renderElement } from './render.js';
 import { createFilterTemplate } from './view/filter-view.js';
 import { createSortingTemplate } from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
 import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
-import {generatePoint} from './mock/point.js';
+import { generatePoint } from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
 import { pointsToFilter } from './filter.js';
-//import dayjs from 'dayjs';
 
 
 const POINT_COUNT = 15;
@@ -21,7 +21,8 @@ const siteTripControlsNavigation = siteTripMainElement.querySelector(
   '.trip-controls__navigation'
 );
 
-renderTemplate(siteTripControlsNavigation, createSiteMenuTemplate(), RenderPosition.BEFOREEND);
+renderElement(siteTripControlsNavigation, new SiteMenuView().element, RenderPosition.BEFOREEND);
+//renderTemplate(siteTripControlsNavigation, createSiteMenuTemplate(), RenderPosition.BEFOREEND);
 
 const siteTripControlFilters = siteTripMainElement.querySelector('.trip-controls__filters');
 
