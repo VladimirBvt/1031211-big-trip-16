@@ -10,6 +10,7 @@ import { generatePoint } from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
 import { pointsToFilter } from './filter.js';
+import ListEventsView from './view/list-events-view';
 
 
 const POINT_COUNT = 15;
@@ -35,9 +36,10 @@ renderTemplate(siteTripEventsElement, createSortingTemplate(), RenderPosition.BE
 
 renderTemplate(siteTripEventsElement, createFormOfCreation(), RenderPosition.BEFOREEND);
 
-const siteEventList = document.createElement('ul');
-siteEventList.classList.add('trip-events__list');
-siteTripEventsElement.append(siteEventList);
+renderElement(siteTripEventsElement, new ListEventsView().element, RenderPosition.BEFOREEND);
+const siteEventList = document.querySelector('.trip-events__list');
+//siteEventList.classList.add('trip-events__list');
+//siteTripEventsElement.append(siteEventList);
 
 
 for (let i = 0; i < points.length; i ++) {
