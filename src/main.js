@@ -1,7 +1,7 @@
 //import { createSiteMenuTemplate } from './view/site-menu-view.js';
 import SiteMenuView from './view/site-menu-view.js';
 import { renderTemplate, RenderPosition, renderElement } from './render.js';
-import { createFilterTemplate } from './view/filter-view.js';
+//import FilterView, { createFilterTemplate } from './view/filter-view.js';
 import { createSortingTemplate } from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
 import { createEditForm } from './view/edit-form-view.js';
@@ -9,8 +9,10 @@ import { createTripPoint } from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
-import { pointsToFilter } from './filter.js';
-import ListEventsView from './view/list-events-view';
+//WIP
+//import { pointsToFilter } from './filter.js';
+import FilterView from './view/filter-view.js';
+import ListEventsView from './view/list-events-view.js';
 
 
 const POINT_COUNT = 15;
@@ -27,7 +29,9 @@ renderElement(siteTripControlsNavigation, new SiteMenuView().element, RenderPosi
 
 const siteTripControlFilters = siteTripMainElement.querySelector('.trip-controls__filters');
 
-renderTemplate(siteTripControlFilters, createFilterTemplate(), RenderPosition.BEFOREEND);
+renderElement(siteTripControlFilters, new FilterView().element, RenderPosition.BEFOREEND);
+//Wip
+//renderTemplate(siteTripControlFilters, createFilterTemplate(), RenderPosition.BEFOREEND);
 
 const siteMainElement = document.querySelector('.page-body__page-main');
 const siteTripEventsElement = siteMainElement.querySelector('.trip-events');
@@ -140,7 +144,7 @@ for (const button of favoriteButtons) {
     }
   });
 }
-
+/* В работе:
 // фильтрация точек по кнопке FUTURE
 const buttonFuturePoints = document.querySelector('#filter-future'); // input
 
@@ -159,5 +163,5 @@ buttonPastPoints.addEventListener('click',() => {
 const buttonEverythingPoints = document.querySelector('#filter-everything'); // input
 
 buttonEverythingPoints.addEventListener('click',() => points);
-
+*/
 export { points };
