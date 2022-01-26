@@ -2,7 +2,7 @@
 import SiteMenuView from './view/site-menu-view.js';
 import { renderTemplate, RenderPosition, renderElement } from './render.js';
 //import FilterView, { createFilterTemplate } from './view/filter-view.js';
-import { createSortingTemplate } from './view/sorting-view.js';
+import SortingView from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
 import { createEditForm } from './view/edit-form-view.js';
 import { createTripPoint } from './view/trip-point-view.js';
@@ -36,7 +36,8 @@ renderElement(siteTripControlFilters, new FilterView().element, RenderPosition.B
 const siteMainElement = document.querySelector('.page-body__page-main');
 const siteTripEventsElement = siteMainElement.querySelector('.trip-events');
 
-renderTemplate(siteTripEventsElement, createSortingTemplate(), RenderPosition.BEFOREEND);
+renderElement(siteTripEventsElement, new SortingView().element, RenderPosition.BEFOREEND);
+//renderTemplate(siteTripEventsElement, createSortingTemplate(), RenderPosition.BEFOREEND);
 
 renderTemplate(siteTripEventsElement, createFormOfCreation(), RenderPosition.BEFOREEND);
 
