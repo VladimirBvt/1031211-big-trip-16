@@ -27,8 +27,6 @@ renderElement(siteTripControlsNavigation, new SiteMenuView().element, RenderPosi
 const siteTripControlFilters = siteTripMainElement.querySelector('.trip-controls__filters');
 
 renderElement(siteTripControlFilters, new FilterView().element, RenderPosition.BEFOREEND);
-//Wip
-//renderTemplate(siteTripControlFilters, createFilterTemplate(), RenderPosition.BEFOREEND);
 
 const siteMainElement = document.querySelector('.page-body__page-main');
 const siteTripEventsElement = siteMainElement.querySelector('.trip-events');

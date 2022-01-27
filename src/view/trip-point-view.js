@@ -57,4 +57,8 @@ export default class TripPointView {
   get template() {
     return createTripPoint(this.#point);
   }
+
+  removeElement() {
+    this.#element = null;
+  }
 }

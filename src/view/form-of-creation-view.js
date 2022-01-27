@@ -201,4 +201,8 @@ export default class FormOfCreationView {
   get template() {
     return createFormOfCreation(this.#point);
   }
+
+  removeElement() {
+    this.#element = null;
+  }
 }

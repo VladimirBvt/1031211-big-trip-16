@@ -131,4 +131,8 @@ export default class EditFormView {
   get template() {
     return createEditForm(this.#point);
   }
+
+  removeElement() {
+    this.#element = null;
+  }
 }
