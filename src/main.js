@@ -8,7 +8,7 @@ import EditFormView from './view/edit-form-view.js';
 //import { createTripPoint } from './view/trip-point-view.js';
 import TripPointView from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
-import { createOffer } from './view/offer-view.js';
+import OfferView from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
 //WIP
 //import { pointsToFilter } from './filter.js';
@@ -70,7 +70,8 @@ for (const button of buttonOpenEditForm) {
     const offerContainer = grandParentElement.querySelector('.event__available-offers');
 
     for (const offer of thisPoint.offers.offers) {
-      renderTemplate(offerContainer, createOffer(offer), RenderPosition.BEFOREEND);
+      renderElement(offerContainer, new OfferView(offer).element, RenderPosition.BEFOREEND);
+      //renderTemplate(offerContainer, createOffer(offer), RenderPosition.BEFOREEND);
     }
 
     const editForm = grandParentElement.querySelector('.event--edit');
