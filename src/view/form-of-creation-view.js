@@ -1,4 +1,6 @@
-export const createFormOfCreation = (point = {}) => {
+import {createElement} from '../render';
+
+const createFormOfCreation = (point = {}) => {
   const {
     // eslint-disable-next-line no-unused-vars
     basePrice = null,
@@ -179,3 +181,24 @@ export const createFormOfCreation = (point = {}) => {
                 </section>
               </form>`);
 };
+
+export default class FormOfCreationView {
+  #element = null;
+  #point = null;
+
+  constructor(point) {
+    this.#point = point;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createFormOfCreation(this.#point);
+  }
+}

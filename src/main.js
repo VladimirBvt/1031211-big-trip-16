@@ -1,11 +1,8 @@
-//import { createSiteMenuTemplate } from './view/site-menu-view.js';
 import SiteMenuView from './view/site-menu-view.js';
-import { renderTemplate, RenderPosition, renderElement } from './render.js';
-//import FilterView, { createFilterTemplate } from './view/filter-view.js';
+import { RenderPosition, renderElement } from './render.js';
 import SortingView from './view/sorting-view.js';
-import { createFormOfCreation } from './view/form-of-creation-view.js';
+import FormOfCreationView from './view/form-of-creation-view.js';
 import EditFormView from './view/edit-form-view.js';
-//import { createTripPoint } from './view/trip-point-view.js';
 import TripPointView from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 import OfferView from './view/offer-view.js';
@@ -26,7 +23,6 @@ const siteTripControlsNavigation = siteTripMainElement.querySelector(
 );
 
 renderElement(siteTripControlsNavigation, new SiteMenuView().element, RenderPosition.BEFOREEND);
-//renderTemplate(siteTripControlsNavigation, createSiteMenuTemplate(), RenderPosition.BEFOREEND);
 
 const siteTripControlFilters = siteTripMainElement.querySelector('.trip-controls__filters');
 
@@ -38,20 +34,14 @@ const siteMainElement = document.querySelector('.page-body__page-main');
 const siteTripEventsElement = siteMainElement.querySelector('.trip-events');
 
 renderElement(siteTripEventsElement, new SortingView().element, RenderPosition.BEFOREEND);
-//renderTemplate(siteTripEventsElement, createSortingTemplate(), RenderPosition.BEFOREEND);
 
-renderTemplate(siteTripEventsElement, createFormOfCreation(), RenderPosition.BEFOREEND);
+renderElement(siteTripEventsElement, new FormOfCreationView().element, RenderPosition.BEFOREEND);
 
 const eventListComponent = new ListEventsView();
 renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.BEFOREEND);
-//const siteEventList = document.querySelector('.trip-events__list');
-//siteEventList.classList.add('trip-events__list');
-//siteTripEventsElement.append(siteEventList);
-
 
 for (let i = 0; i < points.length; i ++) {
   renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
-  //renderTemplate(eventListComponent.element, createTripPoint(points[i]), RenderPosition.BEFOREEND);
 }
 
 // кнопка открытия формы редактирования точки
@@ -65,13 +55,11 @@ for (const button of buttonOpenEditForm) {
     const thisPoint = points.find((point) => point.id === + dataIdElement);
 
     renderElement(grandParentElement, new EditFormView(thisPoint).element, RenderPosition.AFTERBEGIN);
-    //renderTemplate(grandParentElement, createEditForm(thisPoint), RenderPosition.AFTERBEGIN);
 
     const offerContainer = grandParentElement.querySelector('.event__available-offers');
 
     for (const offer of thisPoint.offers.offers) {
       renderElement(offerContainer, new OfferView(offer).element, RenderPosition.BEFOREEND);
-      //renderTemplate(offerContainer, createOffer(offer), RenderPosition.BEFOREEND);
     }
 
     const editForm = grandParentElement.querySelector('.event--edit');
@@ -104,11 +92,10 @@ buttonNewEvent.addEventListener('click', () => {
   const newPoint = generateNewPoint();
   newPoint.id = points.length;
   points.push(newPoint);
-  //console.log(points);
 });
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
     if (!newEventForm.classList.contains('visually-hidden')) {
       newEventForm.reset();
       newEventForm.classList.add('visually-hidden');
