@@ -4,8 +4,9 @@ import { renderTemplate, RenderPosition, renderElement } from './render.js';
 //import FilterView, { createFilterTemplate } from './view/filter-view.js';
 import SortingView from './view/sorting-view.js';
 import { createFormOfCreation } from './view/form-of-creation-view.js';
-import { createEditForm } from './view/edit-form-view.js';
-import { createTripPoint } from './view/trip-point-view.js';
+import EditFormView from './view/edit-form-view.js';
+//import { createTripPoint } from './view/trip-point-view.js';
+import TripPointView from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 import { createOffer } from './view/offer-view.js';
 import { generateNewPoint } from './mock/point.js';
@@ -41,14 +42,16 @@ renderElement(siteTripEventsElement, new SortingView().element, RenderPosition.B
 
 renderTemplate(siteTripEventsElement, createFormOfCreation(), RenderPosition.BEFOREEND);
 
-renderElement(siteTripEventsElement, new ListEventsView().element, RenderPosition.BEFOREEND);
-const siteEventList = document.querySelector('.trip-events__list');
+const eventListComponent = new ListEventsView();
+renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.BEFOREEND);
+//const siteEventList = document.querySelector('.trip-events__list');
 //siteEventList.classList.add('trip-events__list');
 //siteTripEventsElement.append(siteEventList);
 
 
 for (let i = 0; i < points.length; i ++) {
-  renderTemplate(siteEventList, createTripPoint(points[i]), RenderPosition.BEFOREEND);
+  renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
+  //renderTemplate(eventListComponent.element, createTripPoint(points[i]), RenderPosition.BEFOREEND);
 }
 
 // кнопка открытия формы редактирования точки
@@ -61,7 +64,8 @@ for (const button of buttonOpenEditForm) {
     const dataIdElement = grandParentElement.dataset.id;
     const thisPoint = points.find((point) => point.id === + dataIdElement);
 
-    renderTemplate(grandParentElement, createEditForm(thisPoint), RenderPosition.AFTERBEGIN);
+    renderElement(grandParentElement, new EditFormView(thisPoint).element, RenderPosition.AFTERBEGIN);
+    //renderTemplate(grandParentElement, createEditForm(thisPoint), RenderPosition.AFTERBEGIN);
 
     const offerContainer = grandParentElement.querySelector('.event__available-offers');
 

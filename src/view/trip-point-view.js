@@ -1,4 +1,6 @@
-export const createTripPoint = (point) => `<li class="trip-events__item" data-id="${point.id}">
+import { createElement } from '../render.js';
+
+const createTripPoint = (point) => `<li class="trip-events__item" data-id="${point.id}">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">${point.dateTo.format('MMM')} ${point.dateFrom.format('DD')}</time>
                 <div class="event__type">
@@ -35,3 +37,24 @@ export const createTripPoint = (point) => `<li class="trip-events__item" data-id
                 </button>
               </div>
             </li>`;
+
+export default class TripPointView {
+  #element = null;
+  #point = null;
+
+  constructor(point) {
+    this.#point = point;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createTripPoint(this.#point);
+  }
+}

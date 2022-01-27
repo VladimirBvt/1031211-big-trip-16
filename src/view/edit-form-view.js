@@ -1,7 +1,7 @@
+import {createElement} from '../render';
 
 
-export const createEditForm = (point) => (
-  `<form class="event event--edit" action="#" method="post">
+const createEditForm = (point) => (`<form class="event event--edit" action="#" method="post">
                 <header class="event__header">
                   <div class="event__type-wrapper">
                     <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -110,5 +110,25 @@ export const createEditForm = (point) => (
                     <p class="event__destination-description">${point.destination.description}</p>
                   </section>
                 </section>
-              </form>`
-);
+              </form>`);
+
+export default class EditFormView {
+  #element = null;
+  #point = null;
+
+  constructor(point) {
+    this.#point = point;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createEditForm(this.#point);
+  }
+}
