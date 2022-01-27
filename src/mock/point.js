@@ -157,17 +157,7 @@ const offers = [{
   ],
 }];
 
-const identifications = [0];
-
-const getIdentification = () => {
-  const indexElement = identifications.length - 1;
-  const identification = identifications[indexElement];
-  const newId = identification + 1;
-  identifications.push(newId);
-  return newId;
-};
-
-export const generatePoint = () => {
+export const generatePoint = (item, index) => {
   const type = generateRandomData(POINT_TYPES);
   const offersThisPoint = offers.find((offer) => type === offer.type);
   return ({
@@ -175,9 +165,20 @@ export const generatePoint = () => {
     dateFrom: dayjs(),
     dateTo: dayjs().add(getRandomInteger(10, 150), 'minute'),
     destination: getDestination(),
-    id: getIdentification(),
-    isFavorite: Boolean(getRandomInteger(0, 1)),
+    id: index,
+    isFavorite: false,
     offers: offersThisPoint,
     type: type,
   });
 };
+
+export const generateNewPoint = () => ({
+  basePrice: null,
+  dateFrom: '',
+  dateTo: '',
+  destination: '',
+  id: null,
+  isFavorite: false,
+  offers: null,
+  type: null,
+});

@@ -1,4 +1,6 @@
-export const createTripPoint = (point) => `<li class="trip-events__item" data-id="${point.id}">
+import { createElement } from '../render.js';
+
+const createTripPoint = (point) => `<li class="trip-events__item" data-id="${point.id}">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">${point.dateTo.format('MMM')} ${point.dateFrom.format('DD')}</time>
                 <div class="event__type">
@@ -24,7 +26,7 @@ export const createTripPoint = (point) => `<li class="trip-events__item" data-id
                     <span class="event__offer-price">${point.offers.offers[0].price}</span>
                   </li>
                 </ul>
-                <button class="event__favorite-btn event__favorite-btn--active" type="button">
+                <button class="event__favorite-btn" type="button">
                   <span class="visually-hidden">Add to favorite</span>
                   <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">
                     <path d="M14 21l-8.22899 4.3262 1.57159-9.1631L.685209 9.67376 9.8855 8.33688 14 0l4.1145 8.33688 9.2003 1.33688-6.6574 6.48934 1.5716 9.1631L14 21z"/>
@@ -35,3 +37,28 @@ export const createTripPoint = (point) => `<li class="trip-events__item" data-id
                 </button>
               </div>
             </li>`;
+
+export default class TripPointView {
+  #element = null;
+  #point = null;
+
+  constructor(point) {
+    this.#point = point;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createTripPoint(this.#point);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}

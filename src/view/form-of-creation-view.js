@@ -1,7 +1,26 @@
-export const createFormOfCreation = () => (
-  `<ul class="trip-events__list">
-            <li class="trip-events__item">
-              <form class="event event--edit" action="#" method="post">
+import {createElement} from '../render';
+
+const createFormOfCreation = (point = {}) => {
+  const {
+    // eslint-disable-next-line no-unused-vars
+    basePrice = null,
+    // eslint-disable-next-line no-unused-vars
+    dateFrom = '',
+    // eslint-disable-next-line no-unused-vars
+    dateTo = '',
+    // eslint-disable-next-line no-unused-vars
+    destination = '',
+    // eslint-disable-next-line no-unused-vars
+    id = null,
+    // eslint-disable-next-line no-unused-vars
+    isFavorite = false,
+    // eslint-disable-next-line no-unused-vars
+    offers = null,
+    // eslint-disable-next-line no-unused-vars
+    type = null,
+  } = point;
+
+  return (`<form class="event event--edit new_event" action="#" method="post">
                 <header class="event__header">
                   <div class="event__type-wrapper">
                     <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -160,7 +179,30 @@ export const createFormOfCreation = () => (
                     </div>
                   </section>
                 </section>
-              </form>
-            </li>
-  </ul>`
-);
+              </form>`);
+};
+
+export default class FormOfCreationView {
+  #element = null;
+  #point = null;
+
+  constructor(point) {
+    this.#point = point;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createFormOfCreation(this.#point);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}
