@@ -40,6 +40,8 @@ renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.
 
 for (let i = 0; i < points.length; i ++) {
   renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
+  // вероятно здесь отрендерить также формы редактирования и здесь же повесить слушатели событий на кнопки открытия-закрытия формы редактирования
+  // и на submit формы, чтобы она закрывалась для начала при отправки.
 }
 
 // кнопка открытия формы редактирования точки
@@ -51,7 +53,6 @@ for (const button of buttonOpenEditForm) {
     const grandParentElement = parentElement.parentNode;
     const dataIdElement = grandParentElement.dataset.id;
     const thisPoint = points.find((point) => point.id === + dataIdElement);
-
     renderElement(grandParentElement, new EditFormView(thisPoint).element, RenderPosition.AFTERBEGIN);
 
     const offerContainer = grandParentElement.querySelector('.event__available-offers');
