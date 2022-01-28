@@ -38,12 +38,38 @@ renderElement(siteTripEventsElement, new FormOfCreationView().element, RenderPos
 const eventListComponent = new ListEventsView();
 renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.BEFOREEND);
 
-for (let i = 0; i < points.length; i ++) {
-  renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
-  // вероятно здесь отрендерить также формы редактирования и здесь же повесить слушатели событий на кнопки открытия-закрытия формы редактирования
-  // и на submit формы, чтобы она закрывалась для начала при отправки.
-}
+const renderPoint = (pointListElement, point) => {
+  const pointComponent = new TripPointView(point);
+  const pointEditComponent = new EditFormView(point);
+  const offerContainer = pointEditComponent.element.querySelector('.event__available-offers');
+  const offer = point.offers.offers;
 
+  const replacePointToForm = () => {
+    pointListElement.replaceChild(pointEditComponent.element, pointComponent.element);
+  };
+
+  const replaceFormToPoint = () => {
+    pointListElement.replaceChild(pointComponent.element, pointEditComponent.element);
+  };
+
+  pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    replacePointToForm();
+    renderElement(offerContainer, new OfferView(offer).element, RenderPosition.BEFOREEND);
+
+    pointEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      replaceFormToPoint();
+    });
+  });
+
+  renderElement(pointListElement, pointComponent.element, RenderPosition.BEFOREEND);
+};
+
+for (let i = 0; i < points.length; i ++) {
+  //renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
+  renderPoint(eventListComponent.element, points[i]);
+}
+/*
 // кнопка открытия формы редактирования точки
 const buttonOpenEditForm = document.querySelectorAll('.event__rollup-btn');
 
@@ -75,7 +101,7 @@ for (const button of buttonOpenEditForm) {
     });
   });
 }
-
+*/
 //скрывание формы добавления новой точки маршрута
 const newEventForm = document.querySelector('.new_event');
 
