@@ -60,6 +60,14 @@ const renderPoint = (pointListElement, point) => {
       evt.preventDefault();
       replaceFormToPoint();
     });
+
+    pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      replaceFormToPoint();
+    });
+
+    pointEditComponent.element.querySelector('.event__reset-btn').addEventListener('click', () => {
+      replaceFormToPoint();
+    });
   });
 
   renderElement(pointListElement, pointComponent.element, RenderPosition.BEFOREEND);
