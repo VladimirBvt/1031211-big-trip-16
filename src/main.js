@@ -56,7 +56,7 @@ const renderPoint = (pointListElement, point) => {
     replacePointToForm();
     renderElement(offerContainer, new OfferView(offer).element, RenderPosition.BEFOREEND);
 
-    pointEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+    pointEditComponent.element.addEventListener('submit', (evt) => {
       evt.preventDefault();
       replaceFormToPoint();
     });
