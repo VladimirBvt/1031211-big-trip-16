@@ -33,7 +33,7 @@ const siteTripEventsElement = siteMainElement.querySelector('.trip-events');
 
 renderElement(siteTripEventsElement, new SortingView().element, RenderPosition.BEFOREEND);
 
-renderElement(siteTripEventsElement, new FormOfCreationView().element, RenderPosition.BEFOREEND);
+//renderElement(siteTripEventsElement, new FormOfCreationView().element, RenderPosition.BEFOREEND);
 
 const eventListComponent = new ListEventsView();
 renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.BEFOREEND);
@@ -74,7 +74,6 @@ const renderPoint = (pointListElement, point) => {
 };
 
 for (let i = 0; i < points.length; i ++) {
-  //renderElement(eventListComponent.element, new TripPointView(points[i]).element, RenderPosition.BEFOREEND);
   renderPoint(eventListComponent.element, points[i]);
 }
 /*
@@ -111,10 +110,37 @@ for (const button of buttonOpenEditForm) {
 }
 */
 //скрывание формы добавления новой точки маршрута
-const newEventForm = document.querySelector('.new_event');
+//const newEventForm = document.querySelector('.new_event');
 
-newEventForm.classList.add('visually-hidden');
+// кнопка добавления новой точки маршрута
+const buttonNewEvent = document.querySelector('.trip-main__event-add-btn');
+const formOfCreationComponent = new FormOfCreationView();
 
+buttonNewEvent.addEventListener('click', () => {
+  renderElement(eventListComponent.element, formOfCreationComponent.element, RenderPosition.AFTERBEGIN);
+
+  //console.log(formOfCreationComponent.element.querySelector('.event__reset-btn'));
+  formOfCreationComponent.element.querySelector('.event__reset-btn').addEventListener('click', () => {
+    formOfCreationComponent.element.remove();
+    formOfCreationComponent.removeElement();
+  });
+
+  formOfCreationComponent.element.querySelector('.event__save-btn').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    formOfCreationComponent.element.remove();
+    formOfCreationComponent.removeElement();
+  });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      formOfCreationComponent.element.remove();
+      formOfCreationComponent.removeElement();
+    }
+  });
+});
+
+//newEventForm.classList.add('visually-hidden');
+/*
 // кнопка добавления новой точки маршрута
 const buttonNewEvent = document.querySelector('.trip-main__event-add-btn');
 
@@ -150,7 +176,8 @@ buttonCancelNewEventForm.addEventListener('click', () => {
 
 buttonSaveNewEventForm.addEventListener('click', () => {
 
-});*/
+});
+*/
 
 // кнопка Избранное
 const favoriteButtons = document.querySelectorAll('.event__favorite-btn');
