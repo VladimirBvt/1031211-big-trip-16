@@ -6,7 +6,7 @@ import EditFormView from './view/edit-form-view.js';
 import TripPointView from './view/trip-point-view.js';
 import { generatePoint } from './mock/point.js';
 import OfferView from './view/offer-view.js';
-import { generateNewPoint } from './mock/point.js';
+//import { generateNewPoint } from './mock/point.js';
 //WIP
 //import { pointsToFilter } from './filter.js';
 import FilterView from './view/filter-view.js';
