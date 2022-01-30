@@ -50,6 +50,7 @@ const renderPoint = (pointListElement, point) => {
 
   const replaceFormToPoint = () => {
     pointListElement.replaceChild(pointComponent.element, pointEditComponent.element);
+    pointEditComponent.removeElement();
   };
 
   pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
