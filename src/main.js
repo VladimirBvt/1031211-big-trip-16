@@ -11,6 +11,7 @@ import OfferView from './view/offer-view.js';
 //import { pointsToFilter } from './filter.js';
 import FilterView from './view/filter-view.js';
 import ListEventsView from './view/list-events-view.js';
+import ListEmptyView from './view/list-empty-view.js';
 
 
 const POINT_COUNT = 15;
@@ -37,6 +38,11 @@ renderElement(siteTripEventsElement, new SortingView().element, RenderPosition.B
 
 const eventListComponent = new ListEventsView();
 renderElement(siteTripEventsElement, eventListComponent.element, RenderPosition.BEFOREEND);
+
+//renderElement(eventListComponent.element, new ListEmptyView().element, RenderPosition.AFTERBEGIN);
+/*if (eventListComponent.element.children.length === 0) {
+  renderElement(eventListComponent.element, new ListEmptyView().element, RenderPosition.AFTERBEGIN);
+}*/
 
 const renderPoint = (pointListElement, point) => {
   const pointComponent = new TripPointView(point);
@@ -76,6 +82,11 @@ const renderPoint = (pointListElement, point) => {
 
 for (let i = 0; i < points.length; i ++) {
   renderPoint(eventListComponent.element, points[i]);
+}
+
+// Заглушка при отсутствии путевых точек
+if (eventListComponent.element.children.length === 0) {
+  renderElement(eventListComponent.element, new ListEmptyView().element, RenderPosition.AFTERBEGIN);
 }
 /*
 // кнопка открытия формы редактирования точки
